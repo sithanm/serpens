@@ -11,9 +11,9 @@ public class Main {
 	PrintWriter writer;
 	Socket sock;
 
-	pubilc static void main(String[] args) {
-		einfacherChatClient client = new einfacherChatClient();
-		client.los()
+	public static void main(String[] args) {
+		Main client = new Main();
+		client.los();
 	}
 
 	public void los() {
@@ -24,7 +24,7 @@ public class Main {
 		eingehend.setWrapStyleWord(true);
 		eingehend.setEditable(false);
 		JScrollPane fScroller = new JScrollPane(eingehend);
-		fScroller.setVerticalSCrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		fScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		fScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		ausgehend = new JTextField(20);
 		JButton sendenButton = new JButton("Senden");
@@ -34,7 +34,7 @@ public class Main {
 		hauptPanel.add(sendenButton);
 		netzwerkEinrichten();
 
-		Thread readerThread = new Thread(new EingehendREader());
+		Thread readerThread = new Thread(new EingehendReader());
 		readerThread.start();
 
 		frame.getContentPane().add(BorderLayout.CENTER, hauptPanel);
@@ -47,7 +47,7 @@ public class Main {
 		try {
 			sock = new Socket("127.0.0.1", 5000);
 			InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
-			reader = new BufferedREader(streamReader);
+			reader = new BufferedReader(streamReader);
 			writer = new PrintWriter(sock.getOutputStream());
 			System.out.println("Netzwerkverbindung steht");
 		} catch(IOException ex) {
@@ -61,7 +61,7 @@ public class Main {
 				writer.println(ausgehend.getText());
 				writer.flush();
 			} catch (Exception ex) {
-				ex.printStackTrace8);
+				ex.printStackTrace();
 			}
 			ausgehend.setText("");
 			ausgehend.requestFocus();
@@ -69,14 +69,14 @@ public class Main {
 	}
 
 	public class EingehendReader implements Runnable {
-		pubilc void run() {
+		public void run() {
 			String nachricht;
 			try {
 				while ((nachricht=reader.readLine()) != null) {
 					System.out.println("gelesen: " + nachricht);
 					eingehend.append(nachricht + "\n");
 				}
-			} catch(Exeption ex) {ex.printStackTrace();}
+			} catch(Exception ex) {ex.printStackTrace();}
 		}
 	}
 }

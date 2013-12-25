@@ -1,4 +1,4 @@
-import java.io*;
+import java.io.*;
 import java.net.*;
 import java.util.*;
 
@@ -7,21 +7,21 @@ public class chatServer{
 	ArrayList clientAusgabeStroeme;
 
 	public class ClientHandler implements Runnable {
-		BufferdReader reader;
+		BufferedReader reader;
 		Socket sock;
 
-		public clientHandler(Socket clientSocket) {
+		public ClientHandler(Socket clientSocket) {
 			try {
 				sock = clientSocket;
 				InputStreamReader isReader = new InputStreamReader(sock.getInputStream());
-				reader = new BufferedREader(isReader);
+				reader = new BufferedReader(isReader);
 			} catch(Exception ex) {ex.printStackTrace();}
 		}
 
 		public void run() {
 			String nachricht;
 			try {
-				while ((nachricht = reader.readLine) != null) {
+				while ((nachricht = reader.readLine()) != null) {
 					System.out.println("gelesen: " + nachricht);
 					esAllenWeitersagen(nachricht);
 				}
@@ -40,10 +40,10 @@ public class chatServer{
 			ServerSocket serverSock = new ServerSocket(5000);
 
 			while(true) {
-				Socket clientsocket = serverSock.accept();
+				Socket clientSocket = serverSock.accept();
 				PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
 				clientAusgabeStroeme.add(writer);
-				Thread t = new thread(new ClientHandler(clientSocket));
+				Thread t = new Thread(new ClientHandler(clientSocket));
 				t.start();
 				System.out.println("habe eine Verbindung");
 			}
@@ -52,7 +52,7 @@ public class chatServer{
 		}
 	}
 
-	public void esAllenWetiersagen(String nachricht) {
+	public void esAllenWeitersagen(String nachricht) {
 		Iterator it = clientAusgabeStroeme.iterator();
 		while(it.hasNext()) {
 			try {
