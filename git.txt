@@ -1,0 +1,9 @@
+git pull https://github.com/sithanm/serpens.git
+git add .
+git commit -m "comment"
+git push origin master
+
+
+
+address: https://github.com/sithanm/serpens.git
+
