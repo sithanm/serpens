@@ -1,0 +1,13 @@
+Directions:
+
+0: top
+1: left
+2: down
+3: right
+
+
+tiles:
+8x8: basicTile (snake movements, obstacles, ...)
+32x32: img
+512x512: superTile (items)
+

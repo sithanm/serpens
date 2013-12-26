@@ -19,8 +19,7 @@ public class Client {
 			socket = new Socket(ip, port);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			System.out.println("Connected to server");
-			DataPackage test = new DataPackage();
-			test.setVar(-3);
+			Move test = new Move(0);
 			oos.writeObject(test);
 			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e) {
