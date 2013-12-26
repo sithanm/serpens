@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
 
 
 public class Map {
 	private boolean obstacles[][];
 	private String img[][];
-	ArrayList<Snake> snakes;
+	private List<Snake> snakes;
 
 
 	public Map () {
@@ -19,6 +21,25 @@ public class Map {
 
 	public String getImg(int x, int y) {
 		return img[x][y];
+	}
+
+	public void update(DataPackage d) {
+		Iterator i = d.getObstacles().iterator();
+		ObstacleUpdate ou;
+		while(i.hasNext()) {
+			ou = (ObstacleUpdate)i.next();
+			obstacles[ou.getx()][ou.gety()] = ou.isObst();
+		}
+
+
+		i = d.getImages().iterator();
+		ImageUpdate iu;
+		while(i.hasNext()) {
+			iu = (ImageUpdate)i.next();
+			img[iu.getx()][iu.gety()] = iu.getName();
+		}
+
+		snakes = d.getSnakes();
 	}
 
 }

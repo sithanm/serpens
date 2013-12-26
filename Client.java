@@ -2,11 +2,11 @@ import java.io.*;
 import java.net.*;
 
 public class Client {
-	Socket socket;
-	ObjectInputStream ois;
-	ObjectOutputStream oos;
-	String ip;
-	int port;
+	private Socket socket;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private String ip;
+	private int port;
 
 	public Client (String ipaddress, int p) {
 		ip = ipaddress;

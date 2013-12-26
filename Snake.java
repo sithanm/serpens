@@ -1,13 +1,13 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Snake {
-	Position pos;
-	int length;
-	List <Position> elements;
-	int direction;
-	int previous_direction;
+	private Position pos;
+	private int length;
+	private List<Position> elements;
+	private int direction;
+	private int previous_direction;
 
 	public Snake(Position pos0, int length0, int dir0) {
 		pos = pos0;
@@ -22,6 +22,10 @@ public class Snake {
 
 	public void turnleft() {
 		//Something... else
+	}
+
+	public List<Position> getElements() {
+		return elements;
 	}
 
 }

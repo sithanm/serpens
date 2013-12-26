@@ -1,15 +1,36 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 class DataPackage implements Serializable{
-    int secretVar;
-	public DataPackage() {secretVar=0;}
+	private ArrayList<ObstacleUpdate> obst_upd;
+	private ArrayList<ImageUpdate> img_upd;
+	private ArrayList<Snake> snakes;
 
-	public void setVar(int x){
-    	secretVar=x;
-	} 
-
-	public int getVar(){
-		return secretVar;
+	public DataPackage(ArrayList<Snake> s) {
+		snakes = s;
+		obst_upd = new ArrayList<ObstacleUpdate>();
+		img_upd = new ArrayList<ImageUpdate>();
 	}
+
+	public void addObstacle(ObstacleUpdate u) {
+		obst_upd.add(u);
+	}
+
+	public void addImage(ImageUpdate u) {
+		img_upd.add(u);
+	}
+
+	public ArrayList<Snake> getSnakes() {
+		return snakes;
+	}
+
+	public ArrayList<ObstacleUpdate> getObstacles() {
+		return obst_upd;
+	}
+
+	public ArrayList<ImageUpdate> getImages() {
+		return img_upd;
+	}
+
 }

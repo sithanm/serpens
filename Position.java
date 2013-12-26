@@ -20,7 +20,7 @@ public class Position {
 		return y;
 	}
 	public int getx() {
-		return x,
+		return x;
 	}
 
 	public Position clone() {
